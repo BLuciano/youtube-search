@@ -16,6 +16,7 @@ html{
 ul{
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 img{
@@ -68,9 +69,37 @@ input[type="submit"]:focus{
   display: block;
   width: 100%;
   height: 200px;
-  margin: 10px 0;
+  margin: 10px auto;
 }
 
 
+/*MEDIA QUERIES*/
+
+@media screen and (min-width: 650px){
+  input[type="text"]{
+    width: 500px;
+    display: block;
+  }
+
+  .results-list:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .thumbnail a{
+    width: 45%;
+    float: left;
+    margin:10px 2.5%;
+    display: inline-block;
+  }
+}
+
+@media screen and (min-width: 1000px){
+  .thumbnail a{
+    width: 30%;
+    margin:10px 1.6666%;
+  }
+}
 
 
