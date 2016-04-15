@@ -18,6 +18,10 @@ ul{
   padding: 0;
 }
 
+img{
+  max-width: 100%;
+}
+
 /*HEADER STYLES*/
 .mainHdr{
   border-top: 3em solid #e72e25;
@@ -52,8 +56,21 @@ input[type="submit"]{
 input[type="submit"]:focus{
   border-bottom: 1px solid #7a201d;
   border-right: .5px solid #7a201d;
-  outline: none;
+  outline: none;;
 }
+
+/*RESULTS SECTION*/
+.results{
+  margin: 100px 0;
+}
+
+.thumbnail a{
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin: 10px 0;
+}
+
 
 
 
