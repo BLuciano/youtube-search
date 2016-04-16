@@ -1,13 +1,15 @@
 $(function(){
+  var search, prevToken, nextToken;
 
   //Shows the Youtube results shown by the search criteria
-  function showResults(item){
+  function showResults(token){
     var url = "https://www.googleapis.com/youtube/v3/search";
     var opts = {
       part : "snippet",
       key  : "AIzaSyAmcy3QNATPg4w6p2cXWOWnkXv5kJqV4tA",
-      maxResults: 12,
-      q : item
+      maxResults : 12,
+      pageToken : "" || token,
+      q : search
     };
 
     $.getJSON(url, opts, function(){
@@ -18,11 +20,16 @@ $(function(){
       var html = "";
       
       if(data.items.length === 0){
-        $(".curr-result").text("No results were found for " + item);
+        $(".curr-result").text("No results were found for " + search);
         return;
       }
 
-      $(".curr-result").text("Showing results for " + item);
+      prevToken = data.prevPageToken || "";
+      nextToken = data.nextPageToken || "";
+      prevToken? $(".prev").show() : $(".prev").hide();
+      nextToken? $(".next").show() : $(".next").hide();
+
+      $(".curr-result").text("Showing results for " + search);
       $.each(results, function(index, value){
         html+= "<li class='thumbnail'>";
         html+= "<a target='_blank'";
@@ -43,12 +50,14 @@ $(function(){
   //Grabs user input and calls function to display items
   $(".search-form").submit(function(event){
     event.preventDefault();
-    var userInput = $("#search-input").val();
+    search = $("#search-input").val();
     $("#search-input").val("");
     $(".search-btn").blur();
-    if(!userInput){
+    if(!search){
       return;
     }
-    showResults(userInput);
+    showResults();
   });
+
+  //
 });
