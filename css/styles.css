@@ -64,7 +64,11 @@ input[type="submit"]:focus{
 
 /*RESULTS SECTION*/
 .results{
-  margin: 100px 0;
+  padding: 100px 0;
+}
+
+.results-list{
+  margin-bottom: 50px;
 }
 
 .thumbnail a{
@@ -81,6 +85,18 @@ input[type="submit"]:focus{
 
 .thumbnail p{
   padding: 0 20px;
+}
+
+.next, .prev{
+  display: none;
+  width: 75px;
+  padding: 1em;
+  margin: 25px 25px 0;
+  background-color: #e72e25;
+  border: none;
+  color: #fff;
+  font-size: 1.25em;
+  font-weight: bold;
 }
 
 /*MEDIA QUERIES*/
