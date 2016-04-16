@@ -69,7 +69,9 @@ input[type="submit"]:focus{
 
 .thumbnail a{
   display: inline-block;
-  margin: 10px auto;
+  margin: 15px auto;
+  text-decoration: none;
+  color: #444;
 }
 
 .thumbnail img{
@@ -77,6 +79,9 @@ input[type="submit"]:focus{
   width: auto;
 }
 
+.thumbnail p{
+  padding: 0 20px;
+}
 
 /*MEDIA QUERIES*/
 
@@ -95,15 +100,14 @@ input[type="submit"]:focus{
   .thumbnail a{
     width: 45%;
     float: left;
-    margin:10px 2.5%;
-    display: inline-block;
+    margin: 15px 2.5%;
   }
 }
 
 @media screen and (min-width: 1000px){
   .thumbnail a{
-    width: 30%;
-    margin:10px 1.6666%;
+    max-width: 30%;
+    margin: 15px 1.6666%;
   }
 }
 

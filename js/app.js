@@ -10,11 +10,14 @@ $(function(){
       q : item
     };
 
-    $.getJSON(url, opts, function(data){
+    $.getJSON(url, opts, function(){
+      $(".search-btn").val("Searching...");
+    })
+    .done(function(data){
       var results = data.items;
       var html = "";
       
-      if(!data){
+      if(data.items.length === 0){
         $(".curr-result").text("No results were found for " + item);
         return;
       }
@@ -24,9 +27,16 @@ $(function(){
         html+= "<li class='thumbnail'>";
         html+= "<a target='_blank'";
         html+= "href='https://www.youtube.com/watch?v=" + value.id.videoId + "'>";
-        html+= "<img src='" + value.snippet.thumbnails.medium.url + "'></a></li>";
+        html+= "<img src='" + value.snippet.thumbnails.medium.url + "'>";
+        html+= "<p>" + value.snippet.title + "</p></a></li>";
       });
       $(".results-list").html(html);
+    })
+    .fail(function(){
+      $(".curr-result").text("There was an error trying to retrieve the information");
+    })
+    .always(function(){
+      $(".search-btn").val("Search");
     });
   }
 
