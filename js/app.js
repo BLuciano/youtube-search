@@ -6,6 +6,7 @@ $(function(){
     var opts = {
       part : "snippet",
       key  : "AIzaSyAmcy3QNATPg4w6p2cXWOWnkXv5kJqV4tA",
+      maxResults: 12,
       q : item
     };
 
