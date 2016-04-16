@@ -1,6 +1,20 @@
 $(function(){
   var search, prevToken, nextToken;
 
+  //Updates the next and prev tokens to be used for pagination
+  function updateTokens(data){
+    prevToken = data.prevPageToken || null;
+    nextToken = data.nextPageToken || null;
+    prevToken? $(".prev").show() : $(".prev").hide();
+    nextToken? $(".next").show() : $(".next").hide();
+    
+    //Hides next button when Youtube API returns a nextToken
+    // even when there are no more results 
+    if(data.items.length < 12){
+      $(".next").hide();
+    }
+  }
+
   //Shows the Youtube results shown by the search criteria
   function showResults(token){
     var url = "https://www.googleapis.com/youtube/v3/search";
@@ -18,22 +32,13 @@ $(function(){
     .done(function(data){
       var results = data.items;
       var html = "";
-      console.log(data);
+      
       if(data.items.length === 0){
         $(".curr-result").text("No results were found for " + search);
         return;
       }
 
-      prevToken = data.prevPageToken || null;
-      nextToken = data.nextPageToken || null;
-      prevToken? $(".prev").show() : $(".prev").hide();
-      nextToken? $(".next").show() : $(".next").hide();
-      
-      //Hides next button when Youtube API returns a nextToken
-      // even when there are no more results 
-      if(data.items.length < 12){
-        $(".next").hide();
-      }
+      updateTokens(data);
 
       $(".curr-result").text("Showing results for " + search);
       $.each(results, function(index, value){
@@ -44,6 +49,7 @@ $(function(){
         html+= "<p>" + value.snippet.title + "</p></a></li>";
       });
       $(".results-list").html(html);
+      window.location ="#top";
     })
     .fail(function(){
       $(".curr-result").text("There was an error trying to retrieve the information");
@@ -51,7 +57,7 @@ $(function(){
     .always(function(){
       $(".search-btn").val("Search");
     });
-  }
+  }//End of showResults function.
 
   //Grabs user input and calls function to display items
   $(".search-form").submit(function(event){
