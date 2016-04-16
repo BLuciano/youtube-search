@@ -3,6 +3,7 @@ html{
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
+  color: #555;
 }
 
 *, *:before, *:after {
@@ -67,10 +68,13 @@ input[type="submit"]:focus{
 }
 
 .thumbnail a{
-  display: block;
-  width: 100%;
-  height: 200px;
+  display: inline-block;
   margin: 10px auto;
+}
+
+.thumbnail img{
+  height: 200px;
+  width: auto;
 }
 
 
